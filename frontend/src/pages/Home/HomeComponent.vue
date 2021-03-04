@@ -1,23 +1,30 @@
 <template>
   <div>
-    <DeashBoardComponent> 
+    <DeashBoardComponent>
       <!-- chama painel da deashboard -->
-      <div slot="slot-pages" class="content-pages">
-        <header class="title_pages">
-          <p>Inicio</p>
-        </header>
-      </div>
+      <div slot="slot-pages" class="content-pages"></div>
     </DeashBoardComponent>
   </div>
 </template>
 
 <script>
 import DeashBoardComponent from "../Deashboard/DeashBordComponent";
+import axios from "axios";
 
 export default {
-  //registra o componente
+  name: "HomeComponent",
   components: {
     DeashBoardComponent,
+  },
+  async created() {
+    const response = await axios.get("user", {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer" + localStorage.getItem("token"),
+      },
+    });
+
+    console.log(response);
   },
 };
 </script>

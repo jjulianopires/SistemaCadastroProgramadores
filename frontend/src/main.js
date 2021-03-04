@@ -9,15 +9,17 @@ import LoginComponent from './pages/Login/LoginComponent'
 import HomeComponent from './pages/Home/HomeComponent'
 import CandidatosComponent from './pages/Candidatos/CandidatosComponent'
 
+import auth from './midleware/auth'
+
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 //cria uma constante com as rotas
 const routes = [
-  { path: '/', name: 'login', component: LoginComponent },
-  { path: '/home', name: 'home', component: HomeComponent },
-  { path: '/candidatos', name: 'candidatos', component: CandidatosComponent },
-  { path: '/criar/candidato', name: 'criar-candidato', component: HomeComponent }
+  { path: '/', name: 'login', component: LoginComponent},
+  { path: '/home', name: 'home', component: HomeComponent, meta: { middleware: auth }},
+  { path: '/candidatos', name: 'candidatos', component: CandidatosComponent, meta: { middleware: auth }},
+  { path: '/criar/candidato', name: 'criar-candidato', component: HomeComponent, meta: { middleware: auth }}
 ]
 
 //usa a instancia de VueRouter

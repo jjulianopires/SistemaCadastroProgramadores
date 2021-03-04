@@ -32,6 +32,9 @@ Route::group(
         'namespace'  => 'App\Http\Controllers',
     ],
     function ($router) {
+        // Route::get('home', function () {
+        //     return response()->json(['success' => 'success'], 200);
+        // })->middleware('auth:api');
         Route::resource('candidatos', 'CandidatoController');
     }
 );
