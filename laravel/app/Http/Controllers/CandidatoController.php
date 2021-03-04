@@ -6,11 +6,11 @@ use App\Models\Candidato;
 
 class CandidatoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api');
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
 
-    }
+    // }
 
 
     /**

@@ -3,7 +3,9 @@
     <DeashBoardComponent> 
       <!-- chama painel da deashboard -->
       <div slot="slot-pages" class="content-pages">
-        <p>home</p>
+        <header class="title_pages">
+          <p>Inicio</p>
+        </header>
       </div>
     </DeashBoardComponent>
   </div>
@@ -19,3 +21,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" src="./style.scss" scoped />
