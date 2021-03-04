@@ -11,12 +11,34 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "NavBarComponent",
 
   methods: {
-    logout() {
-      this.$router.push({ name: "login" });
+     async logout() {
+      try {
+        var response = await axios.post(
+          "http://localhost/SistemaCadastroProgramadores/laravel/public/api/auth/logout",
+          {},
+          {
+            headers: {
+              Accept: "application/json",
+              Authorization: "Bearer" + localStorage.getItem("token"),
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error.toJSON());
+      }
+
+      if (response.status == 200) {
+        console.log(response.data);
+        localStorage.removeItem("token");
+        this.$router.push({ name: "login" });
+        alert(response.data.message)  
+  }
     },
     home() {
       this.$router.push({ name: "home" });

@@ -7,29 +7,30 @@
         </header>
 
         <div class="form">
-          <form>
+          <form @submit.prevent="submit()">
             <div class="form-group">
               <label for="exampleInputEmail1">E-mail</label>
               <input
+                required
                 type="email"
                 class="form-control"
-                id="exampleInputEmail1"
+                id="email"
                 aria-describedby="emailHelp"
-                placeholder="E-mail"
+                placeholder="exemple@gmail.com"
+                v-model="email"
               />
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Senha</label>
               <input
+                required
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1"
-                placeholder="Senha"
+                id="password"
+                v-model="password"
               />
             </div>
-            <button type="submit" class="btn btn-primary" @click="login">
-              Entrar
-            </button>
+            <button class="btn btn-primary w-100">Entrar</button>
           </form>
         </div>
       </div>
@@ -38,16 +39,43 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: 'LoginComponent',
+  name: "LoginComponent",
 
   data() {
-    return {};
+    return {
+      email: "",
+      password: "",
+    };
   },
 
   methods: {
-    login() {
-      this.$router.push({ name: "home" });
+    async submit() {
+      try {
+        var response = await axios.post(
+          "http://localhost/SistemaCadastroProgramadores/laravel/public/api/auth/login",
+          {
+            email: this.email,
+            password: this.password,
+          },
+          {
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
+        
+      } catch (error) {
+         console.log(error.toJSON());
+         alert('Usuário ou senha incorretos.');
+      }
+
+      if (response.status == 200) {
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        this.$router.push({ name: "home" });
+      }
     },
   },
 };
