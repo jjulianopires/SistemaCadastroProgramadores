@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import LoginComponent from './pages/Login/LoginComponent'
 import HomeComponent from './pages/Home/HomeComponent'
 import CandidatosComponent from './pages/Candidatos/CandidatosComponent'
+import FormCandidatosComponent from './pages/Candidatos/FormCandidatosComponent'
 
 import auth from './midleware/auth'
 
@@ -19,7 +20,7 @@ const routes = [
   { path: '/', name: 'login', component: LoginComponent},
   { path: '/home', name: 'home', component: HomeComponent, meta: { middleware: auth }},
   { path: '/candidatos', name: 'candidatos', component: CandidatosComponent, meta: { middleware: auth }},
-  { path: '/criar/candidato', name: 'criar-candidato', component: HomeComponent, meta: { middleware: auth }}
+  { path: '/criar/candidato', name: 'criar-candidato', component: FormCandidatosComponent, meta: { middleware: auth }}
 ]
 
 //usa a instancia de VueRouter

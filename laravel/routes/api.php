@@ -36,5 +36,10 @@ Route::group(
         //     return response()->json(['success' => 'success'], 200);
         // })->middleware('auth:api');
         Route::resource('candidatos', 'CandidatoController');
+        Route::post('candidato/salvar', 'CandidatoController@store');
+        Route::get('candidato/excluir/{id}', 'CandidatoController@delete');
+        Route::post('candidato/atualizar', 'CandidatoController@update');
+        Route::get('candidato/buscar/{id}', 'CandidatoController@show');
+
     }
 );
