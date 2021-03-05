@@ -13,7 +13,6 @@
       <div class="pages">
         <slot name="slot-pages"> </slot>
       </div>
-      
     </div>
   </div>
 </template>

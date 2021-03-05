@@ -26,7 +26,7 @@ class CandidatoFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'idade' => random_int(5, 100),
             'linkedin' => $this->faker->url,
-            'tecnologias' => "Java, PHP, Javascript",
+            'tecnologias' => "Ionic, PHP, Javascript",
         ];
     }
 }
