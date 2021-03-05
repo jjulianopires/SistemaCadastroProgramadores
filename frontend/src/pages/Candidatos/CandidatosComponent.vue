@@ -7,11 +7,19 @@
           <p>Lista de Candidatos</p>
         </header>
 
-        <input
-          type="text"
-          v-model="search"
-          placeholder="Filtrar por tecnologias"
-        />
+        <div class="row" style="padding: 15px;">
+          <div style="width: 170px; padding-left: 40px">
+            <label for="idade">Filtar Candidatos: </label>
+          </div>
+          <div style="width: 140px; padding-left: 5px">
+            <input
+              type="text"
+              v-model="search"
+              placeholder="Filtrar por tecnologias"
+            />
+          </div>
+        </div>
+
 
         <div class="card-deck">
           <div
@@ -37,7 +45,7 @@
                   <div class="col">
                     <button
                       style="width: 100%"
-                      v-on:click="deletarCandidato(candidato.id)"
+                      v-on:click="editarCandidato(candidato)"
                     >
                       Editar
                     </button>
@@ -56,48 +64,7 @@
           </div>
         </div>
 
-        <!-- <div class="lista">
-          <input
-            type="text"
-            v-model="search"
-            placeholder="Filtrar por tecnologias"
-          />
-          <div
-            v-for="candidato in filteredList"
-            :key="candidato.id"
-            style="padding: 5px"
-          >
-            <div class="card w-75">
-              <div class="card-body">
-                <h5 class="descricao"><b>Nome:</b> {{ candidato.nome }}</h5>
-                <p class="card-text">
-                  <b>E-mail:</b> {{ candidato.email }} <br />
-                  <b>Idade:</b> {{ candidato.idade }} <br />
-                  <b>URL linkedin:</b> {{ candidato.linkedin }} <br />
-                  <b>Tecnologias:</b> {{ String(candidato.tecnologias) }}
-                </p>
-              </div>
-              <button v-on:click="deletarCandidato(candidato.id)">
-                Remover Candidato
-              </button>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div class="search-wrapper">
-          <input type="text" v-model="search" placeholder="Search title.." />
-          <label>Search title:</label>
-        </div>
-        <div class="wrapper">
-          <div
-            class="card"
-            v-for="candidato in filteredList"
-            :key="candidato.id"
-          >
-            <small>posted by: {{ candidato.nome }}</small>
-            {{ candidato.email }}
-          </div>
-        </div> -->
+        
       </div>
     </DeashBoardComponent>
   </div>
@@ -133,23 +100,29 @@ export default {
   },
 
   methods: {
+    close() {
+      this.$emit("close");
+    },
+
     async deletarCandidato(id) {
-      const response = await axios.delete(
-        "http://localhost/SistemaCadastroProgramadores/laravel/public/api/candidato/excluir/" +
-          id,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: "Bearer" + localStorage.getItem("token"),
-          },
+      if (confirm("Confirma a exclusão?")) {
+        const response = await axios.delete(
+          "http://localhost/SistemaCadastroProgramadores/laravel/public/api/candidato/excluir/" +
+            id,
+          {
+            headers: {
+              Accept: "application/json",
+              Authorization: "Bearer" + localStorage.getItem("token"),
+            },
+          }
+        );
+        if (response.status == 200) {
+          console.log(response.data);
+          alert("Candidato removido com sucesso!");
+          this.getCandidatos();
+        } else {
+          console.error("Ocorreu um erro na API.");
         }
-      );
-      if (response.status == 200) {
-        console.log(response.data);
-        alert("Candidato removido com sucesso!");
-        this.getCandidatos();
-      } else {
-        console.error("Ocorreu um erro na API.");
       }
     },
 

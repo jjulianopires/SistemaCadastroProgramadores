@@ -15,6 +15,7 @@ import auth from './midleware/auth'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
+
 //cria uma constante com as rotas
 const routes = [
   { path: '/', name: 'login', component: LoginComponent },
