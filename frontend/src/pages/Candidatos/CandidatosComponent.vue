@@ -239,7 +239,9 @@
                     <div class="col">
                       <button
                         style="width: 100%"
-                        @click.prevent="editarCandidato(candidato, candidato.id)"
+                        @click.prevent="
+                          editarCandidato(candidato, candidato.id)
+                        "
                       >
                         Editar
                       </button>
@@ -379,6 +381,7 @@ export default {
       if (response.status == 200) {
         console.log(response.data);
         alert("Candidato atualizado com sucesso!");
+        this.getCandidatos();
       }
 
       this.showEditModal = false;

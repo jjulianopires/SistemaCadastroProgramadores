@@ -152,7 +152,7 @@ class CandidatoController extends Controller
                 $lista = $lista . ", " . $tecnologias[$i];
             }
         }
-
+        
         $candidato = array(
             "nome" => "$nome",
             "email" => "$email",
