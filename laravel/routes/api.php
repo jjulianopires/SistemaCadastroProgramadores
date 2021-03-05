@@ -37,7 +37,7 @@ Route::group(
         // })->middleware('auth:api');
         Route::resource('candidatos', 'CandidatoController');
         Route::post('candidato/salvar', 'CandidatoController@store');
-        Route::get('candidato/excluir/{id}', 'CandidatoController@delete');
+        Route::delete('candidato/excluir/{id}', 'CandidatoController@delete');
         Route::post('candidato/atualizar', 'CandidatoController@update');
         Route::get('candidato/buscar/{id}', 'CandidatoController@show');
 

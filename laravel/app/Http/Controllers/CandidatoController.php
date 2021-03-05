@@ -95,8 +95,14 @@ class CandidatoController extends Controller
         }
     }
 
-    public function delete(Candidato $id)
+    public function delete($id)
     {
+        try {
+            Candidato::find($id)->delete();
+            return response()->json('Candiato removido com sucesso!', 200);
+        } catch (Exception $e) {
+            return "Falha de conexão com o banco";
+        }
     }
 
     public function update(Request $req)

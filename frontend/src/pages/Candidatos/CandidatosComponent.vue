@@ -28,7 +28,9 @@
                   <b>Tecnologias:</b> {{ String(candidato.tecnologias) }}
                 </p>
               </div>
-              <button v-on:click="deleteNinja">Remover Candidato</button>
+              <button v-on:click="deletarCandidato(candidato.id)">
+                Remover Candidato
+              </button>
             </div>
           </div>
         </div>
@@ -82,8 +84,25 @@ export default {
   },
 
   methods: {
-    deleteNinja: function () {
-      alert("nao deletar");
+    async deletarCandidato(id) {
+
+      const response = await axios.delete(
+        "http://localhost/SistemaCadastroProgramadores/laravel/public/api/candidato/excluir/" +
+          id,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: "Bearer" + localStorage.getItem("token"),
+          },
+        }
+      );
+      if (response.status == 200) {
+        console.log(response.data);
+        alert('Candidato removido com sucesso!');
+        this.getCandidatos();
+      } else {
+        console.error("Ocorreu um erro na API.");
+      }
     },
 
     async getCandidatos() {
