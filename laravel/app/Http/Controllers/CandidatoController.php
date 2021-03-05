@@ -21,7 +21,7 @@ class CandidatoController extends Controller
      */
     public function index()
     {
-        
+
         return Candidato::all();
     }
 
@@ -68,14 +68,23 @@ class CandidatoController extends Controller
         $idade = $dados['idade'];
         $linkedin = $dados['linkedin'];
         $tecnologias = $dados['tecnologias'];
+        $lista = "";
+        $tamanhoArray = count($dados['tecnologias']);
 
+        for ($i = 0; $i < $tamanhoArray; $i++) {
+            if ($i == 0) {
+                $lista = $tecnologias[0];
+            } else {
+                $lista = $lista . ", " . $tecnologias[$i];
+            }
+        }
 
         $candidato = array(
             "nome" => "$nome",
             "email" => "$email",
             "idade" => "$idade",
             "linkedin" => "$linkedin",
-            "tecnologias" => "$tecnologias"
+            "tecnologias" => "$lista"
         );
 
         try {
