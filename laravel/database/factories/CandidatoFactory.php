@@ -21,13 +21,12 @@ class CandidatoFactory extends Factory
      */
     public function definition()
     {
-        $tec = array('java','php','javascript');
         return [
             'nome' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'idade' => random_int(5, 100),
             'linkedin' => $this->faker->url,
-            'tecnologias' => json_encode($tec),
+            'tecnologias' => "Java, PHP, Javascript",
         ];
     }
 }

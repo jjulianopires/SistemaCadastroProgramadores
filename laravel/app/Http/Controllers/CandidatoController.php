@@ -21,6 +21,7 @@ class CandidatoController extends Controller
      */
     public function index()
     {
+        
         return Candidato::all();
     }
 
@@ -66,7 +67,7 @@ class CandidatoController extends Controller
         $email = $dados['email'];
         $idade = $dados['idade'];
         $linkedin = $dados['linkedin'];
-        $tecnologias = json_encode($dados['tecnologias']);
+        $tecnologias = $dados['tecnologias'];
 
 
         $candidato = array(

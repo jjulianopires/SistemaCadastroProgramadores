@@ -19,7 +19,7 @@ class CreateCandidatosTable extends Migration
             $table->string('email');
             $table->integer('idade');
             $table->string('linkedin');
-            $table->json('tecnologias');
+            $table->string('tecnologias');
             $table->timestamps();
         });
     }

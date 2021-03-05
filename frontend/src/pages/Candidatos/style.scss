@@ -1,1 +1,14 @@
 @import '@/assets/scss/_main';
+
+.lista {
+    padding-left: 20%;
+    align-items : center;
+
+    .descricao {
+        font-size: 15px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+}

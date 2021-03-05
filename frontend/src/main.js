@@ -17,10 +17,10 @@ Vue.use(VueRouter)
 
 //cria uma constante com as rotas
 const routes = [
-  { path: '/', name: 'login', component: LoginComponent},
-  { path: '/home', name: 'home', component: HomeComponent, meta: { middleware: auth }},
-  { path: '/candidatos', name: 'candidatos', component: CandidatosComponent, meta: { middleware: auth }},
-  { path: '/criar/candidato', name: 'criar-candidato', component: FormCandidatosComponent, meta: { middleware: auth }}
+  { path: '/', name: 'login', component: LoginComponent },
+  { path: '/home', name: 'home', component: HomeComponent, meta: { middleware: auth } },
+  { path: '/candidatos', name: 'candidatos', component: CandidatosComponent, meta: { middleware: auth } },
+  { path: '/criar/candidato', name: 'criar-candidato', component: FormCandidatosComponent, meta: { middleware: auth } }
 ]
 
 //usa a instancia de VueRouter
