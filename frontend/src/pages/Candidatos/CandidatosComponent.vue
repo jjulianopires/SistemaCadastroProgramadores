@@ -7,7 +7,56 @@
           <p>Lista de Candidatos</p>
         </header>
 
-        <div class="lista">
+        <input
+          type="text"
+          v-model="search"
+          placeholder="Filtrar por tecnologias"
+        />
+
+        <div class="card-deck">
+          <div
+            v-for="candidato in filteredList"
+            :key="candidato.id"
+            style="padding: 5px"
+          >
+            <div class="card">
+              <div
+                class="card-body"
+                style="width: 300px; height: auto; min-height: 300px"
+              >
+                <p class="card-title"><b>Nome:</b> {{ candidato.nome }}</p>
+                <p class="card-text">
+                  <b>E-mail:</b> {{ candidato.email }}<br />
+                  <b>Idade:</b> {{ candidato.idade }}<br />
+                  <b>URL Linkedin:</b> {{ candidato.linkedin }}<br />
+                  <b>Tecnologias:</b> {{ candidato.tecnologias }}<br />
+                </p>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col">
+                    <button
+                      style="width: 100%"
+                      v-on:click="deletarCandidato(candidato.id)"
+                    >
+                      Editar
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button
+                      style="width: 100%"
+                      v-on:click="deletarCandidato(candidato.id)"
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="lista">
           <input
             type="text"
             v-model="search"
@@ -33,7 +82,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="search-wrapper">
           <input type="text" v-model="search" placeholder="Search title.." />
@@ -85,7 +134,6 @@ export default {
 
   methods: {
     async deletarCandidato(id) {
-
       const response = await axios.delete(
         "http://localhost/SistemaCadastroProgramadores/laravel/public/api/candidato/excluir/" +
           id,
@@ -98,7 +146,7 @@ export default {
       );
       if (response.status == 200) {
         console.log(response.data);
-        alert('Candidato removido com sucesso!');
+        alert("Candidato removido com sucesso!");
         this.getCandidatos();
       } else {
         console.error("Ocorreu um erro na API.");
@@ -116,8 +164,12 @@ export default {
         }
       );
       if (response.status == 200) {
-        console.log(response.data);
-        this.candidatos = response.data;
+        if (response.data.length == 0) {
+          alert("Cadastre pelo menos um candidato para exibir a lista.");
+        } else {
+          console.log(response.data);
+          this.candidatos = response.data;
+        }
       } else {
         console.error("Ocorreu um erro na API.");
       }
