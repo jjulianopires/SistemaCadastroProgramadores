@@ -4,7 +4,7 @@ Aplicativo web SPA, que integra com um backend utilizando REST API. O objetivo d
 > Link de demonstração funcional da aplicação: https://www.youtube.com/watch?v=O8bqLifl-nc
 ***
 
-> ## Backedn API REST Laravel:
+> ## Back-end API REST Laravel:
 SistemaCadastroProgramadores\laravel 
 ***
 
